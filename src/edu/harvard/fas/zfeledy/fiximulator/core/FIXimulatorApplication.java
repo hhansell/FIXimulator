@@ -687,7 +687,12 @@ public class FIXimulatorApplication extends MessageCracker
         executionReport.set(new OrderQty(execution.getOrder().getQuantity()));
         executionReport.set(new LastShares(execution.getLastShares()));
         executionReport.set(new LastPx(execution.getLastPx()));
-        System.out.println("Setting...");
+        
+	if(execution.getOrder().getOrigClientID() != null){
+            executionReport.set(new OrigClOrdID(execution.getOrder().getOrigClientID()));
+        }
+	
+	System.out.println("Setting...");
         System.out.println("SecurityID: " + order.getSecurityID());
         System.out.println("IDSource: " + order.getIdSource());
         if( order.getSecurityID() != null 
